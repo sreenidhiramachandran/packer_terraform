@@ -46,3 +46,73 @@ resource "aws_instance" "frontend" {
     "Name" = "${var.project}-${var.environment}-frontend"
   }
 }
+
+#====================datasource code
+
+data "aws_ami" "ami-id" {
+  most_recent = true
+  owners      = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["${var.project}-${var.environment}-*"]
+  }
+
+  filter {
+    name   = "tag:project"
+    values = [var.project]
+  }
+
+  filter {
+    name   = "tag:env"
+    values = [var.environment]
+  }
+}
+
+#==================variable code
+
+variable "project" {
+  type    = string
+  default = "packer"
+}
+
+variable "environment" {
+  type    = string
+  default = "production"
+}
+
+variable "instance_type" {
+  type    = string
+   default = "t2.micro"
+}
+
+variable "access_key" {
+  type = string
+  default = "AKIATX7C434IADZZGZWK"
+}
+
+variable "secret_key" {
+  type = string
+  default = "Hf4Xq5k/EH/HbrUAvRvi/tOMCcwpyssO7JPZwtpZ"
+}
+
+variable "region" {
+  type = string
+  default = "ap-south-1"
+}
+
+#=================provider code
+provider "aws" {
+  region     = var.region
+  access_key = var.access_key
+  secret_key = var.secret_key
+}
+
+#=================output code
+output "Webserver_Public_IP" {
+  value = aws_instance.frontend.public_ip
+}
+
+output "Website_URL" {
+  value = "http://${aws_instance.frontend.public_dns}"
+}
