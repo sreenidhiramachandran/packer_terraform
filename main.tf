@@ -88,12 +88,12 @@ variable "instance_type" {
 
 variable "access_key" {
   type = string
-  default = "AKIATX7C434IADZZGZWK"
+  default = "*********************"
 }
 
 variable "secret_key" {
   type = string
-  default = "Hf4Xq5k/EH/HbrUAvRvi/tOMCcwpyssO7JPZwtpZ"
+  default = "**********************************"
 }
 
 variable "region" {
