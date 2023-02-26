@@ -1,5 +1,5 @@
 # packer_terraform
-packer_terraform
+packer
 
 
 Packer is an open-source tool developed by HashiCorp that falls under the category of infrastructure as code (IaC) tools. It is used in DevOps for creating identical machine images for multiple platforms such as Amazon Web Services (AWS), Microsoft Azure, Google Cloud Platform (GCP), and many others.
